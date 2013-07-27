@@ -15,6 +15,10 @@
 * PKGBUILD Script : http://goo.gl/gdkB0
 * Maintainer : Sofyan Saputra/Iank (meongbego@gmail.com)
 
+##Contributor IGNSDK For Slackware##
+* SLACKBUILD Script : https://github.com/wajatmaka/Slackbuild-ignsdk
+* Maintainer : Dwiyan Galuh W/Wajatmaka (wajatmaka@gmail.com)
+
 ##Build##
 ```
 $sudo yum install qt-devel qtwebkit-devel qjson
