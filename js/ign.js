@@ -36,12 +36,12 @@
             opt += " -t "+set.time;
         }
         this.click(function(){
-            ign.cliOut("notify-send "+opt);
+            ign.exec("notify-send "+opt);
         });
     };
     $.fn.applaunch = function(app) {
         this.click(function(){
-            ign.cliOut("xdg-open /usr/share/applications/"+app+".desktop");
+            ign.exec(app);
         });
     };
     

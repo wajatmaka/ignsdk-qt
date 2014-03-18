@@ -1,7 +1,8 @@
 /*ibnu.yahya@toroo.org*/
-#include <QtGui/QApplication>
+#include <QtWidgets/QApplication>
 #include "ign.h"
-#include <QtWebKit/QWebView>
+#include <QtWebKitWidgets/QWebView>
+#include <QFileDialog>
 #include <iostream>
 #include <getopt.h>
 using namespace std;
@@ -16,8 +17,9 @@ int main(int argc, char *argv[])
     bool file = false;
     int index;
     int c;
-    char version[] = "version 1.0.1 status experiment";
-    char help[] = "Usage: ignsdk -p [PROJECT DIRECTORY]\n\nGeneral Options :\n--version\toutput version information and exit\n--dev\t\tWeb Inspector Enable\n\nWindow options :\n--transparent\tTransparent Mode\n--noFrame\tFrame Disable\n";
+    int r;
+    bool version = false;
+    char help[] = "Usage: ignsdk -p [PROJECT DIRECTORY]\n\nGeneral Options :\n-v\t--version\t\toutput version information and exit\n-d\t--dev\t\t\tWeb Inspector Enable\n-r\t--dev-remote [port]\tRemote debugging\n\nWindow options :\n--transparent\tTransparent Mode\n--noFrame\tFrame Disable\n";
     opterr = 0;
     static struct option long_options[] =
                  {
@@ -29,13 +31,14 @@ int main(int argc, char *argv[])
                    {"noFrame",  no_argument,       0, 'n'},
                    {"help",  no_argument,       0, 'h'},
                    {"project",      required_argument, 0, 'p'},
+                   {"dev-remote",      required_argument, 0, 'r'},
                    {"version",  no_argument,       0, 'v'},
                    {0, 0, 0, 0}
                  };
 
                int option_index = 0;
 
-           while ((c = getopt_long (argc, argv, "vdnhf:tp:",long_options,&option_index)) != -1){
+           while ((c = getopt_long (argc, argv, "vdnhf:tp:r:",long_options,&option_index)) != -1){
              switch (c)
                {
                case 'p':
@@ -49,6 +52,10 @@ int main(int argc, char *argv[])
                 file = true;
                 optional = optarg;
                break;
+               case 'r':
+                r = atoi(optarg);
+                w.setDevRemote(r);
+               break;
                case 'n':
                  w.widgetNoFrame();
                break;
@@ -56,8 +63,7 @@ int main(int argc, char *argv[])
                  w.widgetTransparent();
                break;
                case 'v':
-                 printf("ignsdk %s\n",version);
-                 exit(0);
+                 version = true;
                break;
                case 'h':
                  printf("%s\n",help);
@@ -67,7 +73,7 @@ int main(int argc, char *argv[])
                  if (optopt == 'c')
                    fprintf (stderr, "Option -%c requires an argument.\n", optopt);
                  else if (isprint (optopt))
-                   fprintf (stderr, "Unknown option `-%c'.\n\nUsage: ignsdk -p [PROJECT DIRECTORY]\n\nGeneral Options :\n--version\toutput version information and exit\n--dev\t\tWeb Inspector Enable\n\nWindow options :\n--transparent\tTransparent Mode\n--noFrame\tFrame Disable\n", optopt);
+                   fprintf (stderr, "Unknown option `-%c'.\n\nUsage: ignsdk -p [PROJECT DIRECTORY]\n\nGeneral Options :\n-v\t--version\t\toutput version information and exit\n-d\t--dev\t\t\tWeb Inspector Enable\n-r\t--dev-remote [port]\tRemote debugging\n\nWindow options :\n--transparent\tTransparent Mode\n--noFrame\tFrame Disable\n", optopt);
                  else
                    fprintf (stderr,
                             "Unknown option character `\\x%x'.\n",
@@ -82,12 +88,18 @@ int main(int argc, char *argv[])
        printf ("Non-option argument %s\n", argv[index]);
     }
 
-    QString opt = url;
-
-    if(opt.isEmpty()){
-        w.render("http://www.igos-nusantara.or.id");
+    if(version){
+        qDebug() << "IGNSDK Version : "<< w.sdkVersion();
+        exit(0);
     }
-    else{
+
+    QString opt = url;
+    QString path = url;
+    if(!opt.isEmpty()){
+        w.pathApp = opt;
+        /*icon set*/
+        a.setWindowIcon(QIcon(path+"icons/app.png"));
+
         if(file){
             opt += "/";
             opt += optional;
@@ -95,10 +107,34 @@ int main(int argc, char *argv[])
         else {
             opt += "/index.html";
         }
+
         w.render(opt);
         w.config(url);
+        w.show();
 
     }
-    w.show();
+    else{
+        QFileDialog *fd = new QFileDialog;
+        QTreeView *tree = fd->findChild <QTreeView*>();
+        tree->setRootIsDecorated(true);
+        tree->setItemsExpandable(true);
+        fd->setFileMode(QFileDialog::Directory);
+        fd->setOption(QFileDialog::ShowDirsOnly);
+        fd->setViewMode(QFileDialog::Detail);
+        int result = fd->exec();
+        QString directory;
+        if (result)
+        {
+            directory = fd->selectedFiles()[0];
+            w.config(directory);
+            w.render(directory+"/index.html");
+            w.show();
+        }
+        else {
+            w.render("http://www.igos-nusantara.or.id");
+            w.show();
+        }
+    }
+
     return a.exec();
 }
