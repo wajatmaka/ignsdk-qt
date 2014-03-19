@@ -13,11 +13,10 @@ $ignsdk -d -p /path/to/example.ign
 
 ##Build##
 ```
-$sudo yum install qt5-qtwebkit-devel gcc-c++ git
-$git clone https://github.com/anak10thn/ignsdk-qt.git
-$cd ignsdk-qt
-$qmake-qt5
-$make
+git clone git@github.com:wajatmaka/Slackbuild-ignsdk.git ignsdk-slackbuild
+cd ignsdk-slackbuild
+sudo ./ign-sdk.SlackBuild
+sudo installpkg /tmp/ign-sdk-v1.1.4-x86_64-ign1_wjt.tgz
 ```
 
 ##Bugs##
@@ -28,36 +27,12 @@ IGN SDK is free software/open source, and is distributed under the BSD license.
 
 ##Maintainer##
 * Eka Tresna Irawan a.k.a Ibnu Yahya (anak10thn@gmail.com)
-* Surya Handika Putratama (ubunteroz@gmail.com)
+* Maintainer : Dwiyan Galuh W a.k.a wajatmaka (wajatmaka@gmail.com)
 
 ##Wiki And Documentation##
 * Eko Yunianto (eyeyunianto@gmail.com)
 * Arif Eko Pratono (arifep2000@gmail.com)
 
-##Contributor##
-###Kuma HTML5 Game###
-* Creator : Mitsuki Sugiya (metallic.code@gmail.com)
-* Github : Omega014
-
-###IGNSDK For Debian###
-* Maintainer : Surya Handika Putratama (ubunteroz@gmail.com) 
-* Github : https://github.com/ubunteroz/ignsdk-debian
-* Download : http://debian.ignsdk.web.id
-
-###IGNSDK For Arch Linux###
-* Maintainer : Sofyan Saputra a.k.a Iank (meongbego@gmail.com)
-* PKGBUILD Script : http://goo.gl/gdkB0
-* Download : http://arch.ignsdk.web.id
-
-###IGNSDK For Slackware###
-* Maintainer : Dwiyan Galuh W a.k.a wajatmaka (wajatmaka@gmail.com)
-* Github : https://github.com/wajatmaka/Slackbuild-ignsdk
-* Download : http://slack.ignsdk.web.id
-
-###IGNSDK For openSUSE###
-* Maintainer : Andi Sugandi (andisugandi@opensuse.org)
-* Web : http://andi.opensuse-id.org
-* Download : http://blog.ignsdk.web.id/?p=860
 
 ##SCREENSHOT##
 ###WebGL test###
