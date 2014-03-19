@@ -1,6 +1,6 @@
-##Welcome to IGOS Nusantara SDK Pages##
+##Welcome to IGOS Nusantara SDK For Slackware Pages##
 ![ignsdk](https://raw.github.com/anak10thn/ignsdk-art/master/logos/ignsdk-rocklovecode.png) 
-IGN SDK is a software development kit designed specifically for application developers in IGOS Nusantara. But now also available for other Linux distros such as Arch Linux, Slackware, Open SUSE and Debian. You can write native apps in HTML and Javascript with IGNSDK
+IGN SDK is a software development kit designed specifically for application developers in IGOS Nusantara. But now also available for other Linux distros such as Arch Linux, Slackware, Open SUSE and Debian. You can write native apps in HTML and Javascript with IGNSDK.
 
 ##Wiki##
 https://github.com/anak10thn/ignsdk-qt/wiki
