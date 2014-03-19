@@ -1,5 +1,0 @@
-post_install(){
-	man -a -u ignsdk-app-builder
-	man -a -u ignsdk-app-creator
-	rm -rf /tmp/ignsdk-dev/
-}
