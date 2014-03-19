@@ -3,12 +3,13 @@
 
 IGN SDK is a software development kit designed specifically for application developers in IGOS Nusantara. But this repository is devoted to users of slackware, You can write native apps in HTML and Javascript with IGNSDK.
 
-##Source##
-https://github.com/anak10thn/ignsdk-qt/
-Eka Tresna Irawan a.k.a Ibnu Yahya (anak10thn@gmail.com)
 
 ##Maintainer##
 * Maintainer : Dwiyan Galuh W a.k.a wajatmaka (wajatmaka@gmail.com)
+
+##Source##
+https://github.com/anak10thn/ignsdk-qt/
+* Eka Tresna Irawan a.k.a Ibnu Yahya (anak10thn@gmail.com)
 
 ##Wiki##
 https://github.com/anak10thn/ignsdk-qt/wiki
